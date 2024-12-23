@@ -1,6 +1,5 @@
 from sys import maxsize
 
-
 class Vertex:
     def __init__(self, value):
         self.distance = maxsize
@@ -8,9 +7,29 @@ class Vertex:
         self.neighbors = {}
         self.previous = None
         self.visited = False
+        self.color = "white"
+        self.in_degree = 0
+        self.out_degree = 0
+
+    def set_in_degree(self, value):
+        self.in_degree = value
+
+    def set_out_degree(self, value):
+        self.out_degree = value
+
+    def get_in_degree(self):
+        return self.in_degree
+
+    def get_out_degree(self):
+        return self.out_degree
 
     def add_neighbour(self, neighbor, cost):
         self.neighbors[neighbor] = cost
+    def get_color(self):
+        return self.color
+
+    def set_color(self, color):
+        self.color = color
 
     def get_id(self):
         return self.id
@@ -80,17 +99,22 @@ class Graph:
         return edges
 
 
-G = Graph()
-G.add_vertex('a')
-G.add_vertex('b')
-G.add_vertex('c')
-G.add_vertex('d')
-G.add_vertex('e')
-G.add_edge('a', 'b', 4)
-G.add_edge('a', 'c', 1)
-G.add_edge('c', 'b', 2)
-G.add_edge('b', 'e', 4)
-G.add_edge('c', 'd', 4)
-G.add_edge('d', 'e', 4)
+def crete_graph():
+    G = Graph()
+    G.add_vertex('a')
+    G.add_vertex('b')
+    G.add_vertex('c')
+    G.add_vertex('d')
+    G.add_vertex('e')
+    G.add_edge('a', 'b', 4)
+    G.add_edge('a', 'c', 1)
+    G.add_edge('c', 'b', 2)
+    G.add_edge('b', 'e', 4)
+    G.add_edge('c', 'd', 4)
+    G.add_edge('d', 'e', 4)
+    return G
 
-print(G.get_edges())
+
+graph = crete_graph()
+
+print(graph.get_edges())
