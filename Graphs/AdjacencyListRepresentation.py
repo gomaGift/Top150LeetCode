@@ -80,8 +80,10 @@ class Graph:
             self.add_vertex(vertex2)
 
         self.vertices[vertex1].add_neighbour(self.vertices[vertex2], cost)
+        self.vertices[vertex2].set_in_degree(self.vertices[vertex2].get_in_degree() + 1)
+
         # if undirected
-        self.vertices[vertex2].add_neighbour(self.vertices[vertex1], cost)
+        # self.vertices[vertex2].add_neighbour(self.vertices[vertex1], cost)
 
 
 

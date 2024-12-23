@@ -1,39 +1,37 @@
 from queue import Queue
 
-from Graphs.AdjacencyListRepresentation import crete_graph, Graph, Vertex
+from Graphs.AdjacencyListRepresentation import Graph, crete_graph
 
 
-def bfs_traversal(traverse_graph: Graph, start: Vertex):
+def bfs(start):
     q = Queue()
-    start_node = start
-    start_node.set_distance(0)
-    start_node.set_previous(None)
-    q.put(start_node)
+
+    start.set_previous(None)
+    start.set_distance(0)
+    q.put(start)
     while not q.empty():
-        current_node = q.get()
-        for neighbour in current_node.get_connections():
-            if neighbour.get_color() == 'white':
-                neighbour.set_color('gray')
-                neighbour.set_previous(current_node)
-                neighbour.set_distance(current_node.get_distance() + 1)
+        curr_node = q.get()
+        for neighbour in curr_node.get_connections():
+            if neighbour.get_color() == "white":
+                neighbour.set_distance(curr_node.get_distance() + 1)
+                neighbour.set_color("gray")
+                neighbour.set_previous(curr_node)
                 q.put(neighbour)
-            current_node.set_color("black")
-
-        if current_node.get_previous():
-            print(
-                f"traversed: {current_node.get_previous().get_id()}-{current_node.get_id()}-{current_node.get_distance()}")
+            curr_node.set_color("black")
+        if curr_node.get_previous():
+           print(f"Traversing: {curr_node.get_id()} - {curr_node.get_previous().get_id()} - {curr_node.get_distance()}")
         else:
-            print(f"traversed: None-{current_node.get_id()}-{current_node.get_distance()}")
+            print(
+                    f"Traversed: None - {curr_node.get_id()} - {curr_node.get_distance()}")
 
 
-graph = crete_graph()
+def bfs_traversal(graph: Graph):
 
-def bfs(traverse_graph: Graph):
-    for vertex in traverse_graph.vertices.values():
+    for vertex in graph.vertices.values():
         if vertex.get_color() == 'white':
-            bfs_traversal(traverse_graph,vertex)
-
-bfs(graph)
+            bfs(vertex)
 
 
 
+g = crete_graph()
+bfs_traversal(g)
