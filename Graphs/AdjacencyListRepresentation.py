@@ -2,7 +2,7 @@ from sys import maxsize
 
 class Vertex:
     def __init__(self, value):
-        self.distance = -1
+        self.distance = maxsize
         self.id = value
         self.neighbors = {}
         self.previous = None
@@ -13,6 +13,9 @@ class Vertex:
 
     def set_in_degree(self, value):
         self.in_degree = value
+
+    def get_weight(self, neighbor):
+        return self.neighbors[neighbor]
 
     def set_out_degree(self, value):
         self.out_degree = value
@@ -83,13 +86,13 @@ class Graph:
         self.vertices[vertex2].set_in_degree(self.vertices[vertex2].get_in_degree() + 1)
 
         # if undirected
-        self.vertices[vertex2].add_neighbour(self.vertices[vertex1], cost)
+        # self.vertices[vertex2].add_neighbour(self.vertices[vertex1], cost)
 
 
 
 
-    def get_vertex(self, vertex):
-        return self.vertices.get(vertex, None)
+    def get_vertex(self, vertex_id):
+        return self.vertices.get(vertex_id, None)
 
 
     def get_edges(self):
@@ -108,12 +111,12 @@ def create_graph():
     G.add_vertex('c')
     G.add_vertex('d')
     G.add_vertex('e')
-    G.add_edge('a', 'b')
-    G.add_edge('a', 'c' )
-    G.add_edge('c', 'b' )
-    G.add_edge('b', 'e' )
-    G.add_edge('c', 'd' )
-    G.add_edge('d', 'e' )
+    G.add_edge('a', 'b', 4)
+    G.add_edge('a', 'c', 1)
+    G.add_edge('c', 'b', 2)
+    G.add_edge('b', 'e', 4)
+    G.add_edge('c', 'd', 4)
+    G.add_edge('d', 'e', 4)
     return G
 
 
