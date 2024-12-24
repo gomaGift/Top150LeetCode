@@ -1,6 +1,6 @@
 from typing import Set
 
-from Graphs.AdjacencyListRepresentation import Graph, Vertex, crete_graph
+from Graphs.AdjacencyListRepresentation import Graph, Vertex, create_graph
 
 
 def dfs(visited: Set[Vertex], graph: Graph, start: Vertex) -> None:
@@ -21,7 +21,7 @@ def dfs_traversal(graph: Graph) -> None:
 
 
 
-grid = crete_graph()
+grid = create_graph()
 
 print()
 print()

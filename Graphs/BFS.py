@@ -1,6 +1,6 @@
 from queue import Queue
 
-from Graphs.AdjacencyListRepresentation import Graph, crete_graph
+from Graphs.AdjacencyListRepresentation import Graph, create_graph
 
 
 def bfs(start):
@@ -33,5 +33,5 @@ def bfs_traversal(graph: Graph):
 
 
 
-g = crete_graph()
+g = create_graph()
 bfs_traversal(g)

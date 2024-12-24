@@ -1,27 +1,31 @@
 from queue import Queue
 
-from Graphs.AdjacencyListRepresentation import crete_graph
+from Graphs.AdjacencyListRepresentation import Graph, create_graph
 
 
-def topological_sort(graph):
-     result = [] # list for a sorted list
-     no_in_degree = Queue()  # for vertices with indegree 0
-     for vertex in graph.vertices.values():
-         if vertex.get_in_degree() == 0:
-             no_in_degree.put(vertex)
+def topological_sort(graph: Graph):
+    without_in_degree_nodes = Queue()
+    sorted_list = []
 
-     while not no_in_degree.empty():
-         vertex = no_in_degree.get()
-         result.append(vertex.get_id())
-         for neighbor in vertex.get_connections():
-             neighbor.set_in_degree(neighbor.get_in_degree() - 1)
-             if neighbor.get_in_degree() == 0:
-                 no_in_degree.put(neighbor)
-     if len(result) != len(graph.vertices):
-         raise ValueError("The graph is not acyclic")
-
-     return result
+    for node in graph.vertices.values():
+        if node.get_in_degree() == 0:
+            without_in_degree_nodes.put(node)
 
 
-g = crete_graph()
-print(topological_sort(g))
+    while not without_in_degree_nodes.empty():
+        current_node = without_in_degree_nodes.get()
+        sorted_list.append(current_node.get_id())
+        for neighbour in current_node.get_connections():
+            neighbour.set_in_degree(neighbour.get_in_degree() - 1)
+            if neighbour.get_in_degree() == 0:
+                without_in_degree_nodes.put(neighbour)
+
+
+    # raise and error if the number of nodes in the result id less than the numbr of vertices i the graph
+    if len(sorted_list) != len(graph.vertices):
+        raise ValueError("Graph is circular")
+
+    return sorted_list
+
+
+print(topological_sort(create_graph()))

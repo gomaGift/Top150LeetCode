@@ -2,7 +2,7 @@ from sys import maxsize
 
 class Vertex:
     def __init__(self, value):
-        self.distance = maxsize
+        self.distance = -1
         self.id = value
         self.neighbors = {}
         self.previous = None
@@ -73,7 +73,7 @@ class Graph:
         return self.vertices[value]
 
 
-    def add_edge(self, vertex1, vertex2, cost):
+    def add_edge(self, vertex1, vertex2, cost = 1):
         if vertex1 not in self.vertices:
             self.add_vertex(vertex1)
         if vertex2 not in self.vertices:
@@ -83,7 +83,7 @@ class Graph:
         self.vertices[vertex2].set_in_degree(self.vertices[vertex2].get_in_degree() + 1)
 
         # if undirected
-        # self.vertices[vertex2].add_neighbour(self.vertices[vertex1], cost)
+        self.vertices[vertex2].add_neighbour(self.vertices[vertex1], cost)
 
 
 
@@ -101,22 +101,22 @@ class Graph:
         return edges
 
 
-def crete_graph():
+def create_graph():
     G = Graph()
     G.add_vertex('a')
     G.add_vertex('b')
     G.add_vertex('c')
     G.add_vertex('d')
     G.add_vertex('e')
-    G.add_edge('a', 'b', 4)
-    G.add_edge('a', 'c', 1)
-    G.add_edge('c', 'b', 2)
-    G.add_edge('b', 'e', 4)
-    G.add_edge('c', 'd', 4)
-    G.add_edge('d', 'e', 4)
+    G.add_edge('a', 'b')
+    G.add_edge('a', 'c' )
+    G.add_edge('c', 'b' )
+    G.add_edge('b', 'e' )
+    G.add_edge('c', 'd' )
+    G.add_edge('d', 'e' )
     return G
 
 
-graph = crete_graph()
+graph = create_graph()
 
 print(graph.get_edges())
