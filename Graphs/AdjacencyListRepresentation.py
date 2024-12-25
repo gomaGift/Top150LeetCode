@@ -111,15 +111,16 @@ def create_graph():
     G.add_vertex('c')
     G.add_vertex('d')
     G.add_vertex('e')
-    G.add_edge('a', 'b', 4)
-    G.add_edge('a', 'c', 1)
-    G.add_edge('c', 'b', 2)
-    G.add_edge('b', 'e', 4)
-    G.add_edge('c', 'd', 4)
-    G.add_edge('d', 'e', 4)
+    G.add_edge('a', 'b', -1)
+    G.add_edge('a', 'c', 4)
+    G.add_edge('b', 'c', 3)
+    G.add_edge('b', 'd', 2)
+    G.add_edge('b', 'e', 2)
+    G.add_edge('d', 'b', 1)
+    G.add_edge('e', 'd', -3)
+    G.add_edge('d', 'c', 5)
     return G
 
 
 graph = create_graph()
 
-print(graph.get_edges())

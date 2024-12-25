@@ -34,5 +34,5 @@ def dijkstra(graph: Graph):
 
 
 
-dijkstra(create_graph()
-         )
+
+
