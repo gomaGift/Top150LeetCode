@@ -11,10 +11,11 @@ def check_path_btw_vertices(graph: Graph, start, end, visited = None):
        if not visited:
            visited = set()
 
-
-       visited.add(start)
        if start == end:
            return True
+
+       visited.add(start)
+
 
        for neighbour in start.get_connections():
            if neighbour not in visited:
