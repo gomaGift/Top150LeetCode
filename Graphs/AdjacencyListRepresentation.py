@@ -84,7 +84,6 @@ class Graph:
 
         self.vertices[vertex1].add_neighbour(self.vertices[vertex2], cost)
         self.vertices[vertex2].set_in_degree(self.vertices[vertex2].get_in_degree() + 1)
-
         # if undirected
         # self.vertices[vertex2].add_neighbour(self.vertices[vertex1], cost)
 
@@ -104,23 +103,5 @@ class Graph:
         return edges
 
 
-def create_graph():
-    G = Graph()
-    G.add_vertex('a')
-    G.add_vertex('b')
-    G.add_vertex('c')
-    G.add_vertex('d')
-    G.add_vertex('e')
-    G.add_edge('a', 'b', -1)
-    G.add_edge('a', 'c', 4)
-    G.add_edge('b', 'c', 3)
-    G.add_edge('b', 'd', 2)
-    G.add_edge('b', 'e', 2)
-    G.add_edge('d', 'b', 1)
-    G.add_edge('e', 'd', -3)
-    G.add_edge('d', 'c', 5)
-    return G
 
-
-graph = create_graph()
 

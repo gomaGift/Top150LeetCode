@@ -45,8 +45,6 @@ class Graph:
         if 0 <= index < self.num_vertices:
             self.vertices[index].set_value(value)
 
-
-
     def add_edge(self,vertex_id, neighbor_id, cost = 0):
         if self.get_vertex(vertex_id) != -1 and self.get_vertex(neighbor_id) != -1:
             self.adjacency_matrix[self.get_vertex(vertex_id)][self.get_vertex(neighbor_id)] = cost
