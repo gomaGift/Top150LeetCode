@@ -1,6 +1,6 @@
 import heapq
 
-from Graphs.AdjacencyListRepresentation import Graph, create_graph
+from Graphs.AdjacencyListRepresentation import Graph
 
 
 def dijkstra(graph: Graph):
