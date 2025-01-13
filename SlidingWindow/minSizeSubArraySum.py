@@ -3,7 +3,8 @@ from typing import List
 
 def minSubArrayLen(target: int, nums: List[int]) -> int:
         nums.sort()
-        left = 0, right = 0
+        left = 0
+        right = 0
         commulative_sum = 0
         minSize = float('inf')
 
