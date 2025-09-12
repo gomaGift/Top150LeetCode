@@ -1,20 +1,16 @@
 from typing import List
 
 
-def findMaxAverage(nums: List[int], k: int) -> float:
-        if len(nums) == 1:
-            return nums[0] / k
-        
+def find_max_sub_average(nums: List[int], k: int) -> float:
+        curr_sum = sum(nums[:k])
+        max_sum = curr_sum
 
-        low = 0
-        high = k-1
-        max_avg = float('-inf')
-        while high < len(nums):
-            curr_sum = sum(nums[low: high+1])
-            max_avg = max(max_avg, curr_sum / k)
-            
-            low += 1
-            high += 1
-        return max_avg
+        for i in range(k, len(nums)):
+            curr_sum = curr_sum + nums[i] - nums[i-k]
+            if curr_sum > max_sum:
+                max_sum = curr_sum
+
+
+        return max_sum / float(k)
     
-print(findMaxAverage([1,12,-5,-6,50,3], 4))
+print("answ",find_max_sub_average([1,12,-5,-6,50,3], 4))

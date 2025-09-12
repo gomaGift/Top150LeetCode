@@ -1,34 +1,33 @@
-from typing import Counter
+from collections import Counter
+def min_window_sub_string(s, t):
+    if s == t:
+        return t
+    min_str = ""
+    min_len = float("inf")
+    if len(t) > len(s):
+       return min_str
+
+    left = right = 0
+    formed = 0
+    char_freq = Counter(t)
+    required = len(char_freq)
+    char_map = {}
+    while right < len(s):
+        char = s[right]
+        char_map[char] = char_map.get(char, 0) + 1
+        if char in char_freq and char_map[char] == char_freq[char]:
+            formed += 1
+        while formed == required and left <= right:
+            if right - left + 1 < min_len:
+                min_len = right - left + 1
+                min_str = s[left: right+1]
+            left_char = s[left]
+            char_map[left_char] -= 1
+            if left_char in char_freq and char_map[left_char] < char_freq[left_char]:
+                formed-=1
+            left += 1
+        right += 1
+    return min_str
 
 
-def minWindow(self, s: str, t: str) -> str:
-        windowCount = {}
-        tCharFrequency = Counter(t)
-        required = len(tCharFrequency)
-        left, right = 0, 0
-        ans = float('inf'), None, None
-        formed = 0
-        while right < len(s):
-            char = s[right]
-            windowCount[char] = windowCount.get(char, 0) + 1
-            if char in tCharFrequency and tCharFrequency[char] == windowCount[char]:
-                formed += 1
-            
-            while left <= right and formed == required:
-                 char = s[left]
-                 
-                 if right - left + 1 < ans[0]:
-                      ans = (right - left + 1, left, right)
-
-                 windowCount[char] -= 1
-                 if char in tCharFrequency and tCharFrequency[char] > windowCount[char]:
-                      formed -= 1
-
-                 left += 1
-
-            right += 1
-        return "" if ans[0] == float("inf") else s[ans[1]: ans[2] + 1]
-
-                
-            
-
+print(min_window_sub_string("ADOBECODEBANC", "ABC"))

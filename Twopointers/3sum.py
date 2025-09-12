@@ -18,9 +18,9 @@ def three_sum(nums: List[int]) -> List[List[int]]:
         ptr_1 = i + 1
         ptr_2 = len(nums) - 1
         while ptr_1 < ptr_2:
-            sum = nums[ptr_1] + nums[ptr_2]
+            two_sum = nums[ptr_1] + nums[ptr_2]
 
-            if sum == target:
+            if two_sum == target:
                 triplets.append([nums[i], nums[ptr_1], nums[ptr_2]])
 
                 while ptr_1 < ptr_2 and nums[ptr_1] == nums[ptr_1 + 1]:
@@ -32,7 +32,7 @@ def three_sum(nums: List[int]) -> List[List[int]]:
                 ptr_1 += 1
                 ptr_2 -= 1
 
-            elif sum > target:
+            elif two_sum > target:
                 ptr_2 -= 1 
             
             else:
